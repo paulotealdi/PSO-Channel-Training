@@ -32,7 +32,7 @@ def distance_matrix(BS_base_pos):
         for j in range(n_BS_elements):
             x_particle_antenna = BS_base_pos + j*dB
             dist = np.linalg.norm(np.array([x_particle_antenna, 0, 0]) - (RIS_ref_pos + np.array([0, i*dR, 0])))
-            matrix[i][j] = dist
+            matrix[i,j] = dist
     return matrix
 
 def h_function(d):
@@ -42,7 +42,6 @@ h_function_vec = np.vectorize(h_function)
 
 hBR = distance_matrix(BS_ref_pos[0])
 hBR_matrix = h_function_vec(hBR)
-print(hBR_matrix);raise()
 
 pbest_array = np.zeros(particle_num)
 fitness_values = []
